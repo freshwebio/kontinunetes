@@ -16,7 +16,7 @@ var (
 	kubeNamespace   = flag.String("namespace", "default", "The namespace to use to update k8s containers in.")
 	apiKey          = flag.String("apikey", "", "The API key to be used to authenticate requests to the server.")
 	apiKeyParamName = flag.String("apikeyParamName", "apikey", "The name of the query parameter that is expected to hold the API key")
-	autoDeployLabel = flag.String("autoDeployLabel", "autodeploy", "The name the label to be used for selecting deployments and replication controllers to deploy")
+	autoDeployLabel = flag.String("autoDeployLabel", "kontinunetes.autodeploy", "The name the label to be used for selecting deployments and replication controllers to deploy")
 )
 
 func main() {

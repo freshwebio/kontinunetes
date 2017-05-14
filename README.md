@@ -37,13 +37,13 @@ The query parameter name may differ if you specify a different name as shown in 
 
 The following configuration should be provided:
 
-| Type   | Flag                          | Environment                    | File                          | Default value         |
-| ------ | :---------------------------- |:------------------------------ |:----------------------------- | :-------------------- |
-| string | -kubeconfig ./config          | KUBECONFIG="./config"          | kubeconfig ./config           | ""                    |
-| string | -namespace myclstr            | NAMESPACE="myclstr"            | namespace myclstr             | "default"             |
-| string | -apikey a653233fre343deweq1   | APIKEY="a653233fre343deweq1"   | apikey a653233fre343deweq1    | ""                    |
-| string | -apikeyParamName apikey       | APIKEYPARAMNAME="apikey"       | apikeyParamName apikey        | "apikey"              |
-| string | -autoDeployLabel auto-deploy  | AUTODEPLOYLABEL="autodeploy"   | autoDeployLabel autodeploy    | "autodeploy"          |
+| Type   | Flag                          | Environment                    | File                          | Default value             |
+| ------ | :---------------------------- |:------------------------------ |:----------------------------- | :------------------------ |
+| string | -kubeconfig ./config          | KUBECONFIG="./config"          | kubeconfig ./config           | ""                        |
+| string | -namespace myclstr            | NAMESPACE="myclstr"            | namespace myclstr             | "default"                 |
+| string | -apikey a653233fre343deweq1   | APIKEY="a653233fre343deweq1"   | apikey a653233fre343deweq1    | ""                        |
+| string | -apikeyParamName apikey       | APIKEYPARAMNAME="apikey"       | apikeyParamName apikey        | "apikey"                  |
+| string | -autoDeployLabel auto-deploy  | AUTODEPLOYLABEL="autodeploy"   | autoDeployLabel autodeploy    | "kontinunetes.autodeploy" |
 
 The apiKey parameter isn't required and if one isn't provided then no authentication occurs within this app.
 Other routes would be to secure this webhook service with an API gateway. An example of this would be to use Kong.
