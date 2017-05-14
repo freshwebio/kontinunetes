@@ -140,6 +140,8 @@ func (c *Client) RedeployDeployment(namespace string, deployment *v1beta1.Deploy
 	if err != nil {
 		return err
 	}
+	// Make sure the resource version is empty so the system can set it.
+	deployment.ResourceVersion = ""
 	_, err = c.Clientset.ExtensionsV1beta1().
 		Deployments(namespace).
 		Create(deployment)
@@ -159,6 +161,8 @@ func (c *Client) RedeployRC(namespace string, rc *v1.ReplicationController) erro
 	if err != nil {
 		return err
 	}
+	// Make sure the resource version is empty so the system can set it.
+	rc.ResourceVersion = ""
 	_, err = c.Clientset.CoreV1().
 		ReplicationControllers(namespace).
 		Create(rc)
