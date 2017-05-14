@@ -30,7 +30,7 @@ for in cluster usage.
 Add the webhook http(s)://mydomain.com/auto-deploy/{registry} to your docker repository build settings.
 This will currently only work with docker hub as the only supported source to date.
 A more concrete example would be the following: https://mydomain.com/auto-deploy/docker-hub.
-If you set an API key when first running the app then it will  https://mydomain.com/auto-deploy/docker-hub?apikey=my-awesome-key.
+If you set an API key when first running the app then it will be https://mydomain.com/auto-deploy/docker-hub?apikey=my-awesome-key.
 The query parameter name may differ if you specify a different name as shown in the section about configuration below.
 
 ## Configuration
