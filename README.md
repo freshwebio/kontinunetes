@@ -26,6 +26,13 @@ all dependencies to run on the empty scratch base.
 Now you can build the docker image and run it in docker as an out of cluster k8s client or in k8s
 for in cluster usage.
 
+## Using Kontinunetes
+Add the webhook http(s)://mydomain.com/auto-deploy/{registry} to your docker repository build settings.
+This will currently only work with docker hub as the only supported source to date.
+A more concrete example would be the following: https://mydomain.com/auto-deploy/docker-hub.
+If you set an API key when first running the app then it will  https://mydomain.com/auto-deploy/docker-hub?apikey=my-awesome-key.
+The query parameter name may differ if you specify a different name as shown in the section about configuration below.
+
 ## Configuration
 
 The following configuration should be provided:
