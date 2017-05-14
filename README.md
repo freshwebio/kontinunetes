@@ -29,6 +29,7 @@ for in cluster usage.
 ## Configuration
 
 The following configuration should be provided:
+
 | Type   | Flag                          | Environment                    | File                          | Default value         |
 | ------ | :---------------------------- |:------------------------------ |:----------------------------- | :-------------------- |
 | string | -kubeconfig ./config          | KUBECONFIG="./config"          | kubeconfig ./config           | ""                    |
