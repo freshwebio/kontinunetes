@@ -140,6 +140,7 @@ func (c *Client) RedeployDeployment(namespace string, deployment *v1beta1.Deploy
 	if err != nil {
 		return err
 	}
+	deplScale.Spec.Replicas = 0
 	_, err = c.Clientset.ExtensionsV1beta1().
 		Scales(namespace).
 		Update("Deployment", deplScale)
@@ -176,6 +177,7 @@ func (c *Client) RedeployRC(namespace string, rc *v1.ReplicationController) erro
 	if err != nil {
 		return err
 	}
+	rcScale.Spec.Replicas = 0
 	_, err = c.Clientset.ExtensionsV1beta1().
 		Scales(namespace).
 		Update("ReplicationController", rcScale)
