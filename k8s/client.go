@@ -130,11 +130,24 @@ func (c *Client) filterRCsByImage(image string, replicationControllers *v1.Repli
 	replicationControllers.Items = filtered
 }
 
-// RedeployDeployment deals with deleting and then creating the provided deployment
+// RedeployDeployment deals with scaling down, deleting and then creating the provided deployment
 // in the given namespace.
 func (c *Client) RedeployDeployment(namespace string, deployment *v1beta1.Deployment) error {
+	// First scale the deployment down to 0, this removes the pod replica instances.
+	deplScale, err := c.Clientset.ExtensionsV1beta1().
+		Scales(namespace).
+		Get("Deployment", deployment.GetName())
+	if err != nil {
+		return err
+	}
+	_, err = c.Clientset.ExtensionsV1beta1().
+		Scales(namespace).
+		Update("Deployment", deplScale)
+	if err != nil {
+		return err
+	}
 	opts := &v1.DeleteOptions{}
-	err := c.Clientset.ExtensionsV1beta1().
+	err = c.Clientset.ExtensionsV1beta1().
 		Deployments(namespace).
 		Delete(deployment.GetName(), opts)
 	if err != nil {
@@ -154,8 +167,23 @@ func (c *Client) RedeployDeployment(namespace string, deployment *v1beta1.Deploy
 // RedeployRC deals with deleting and then creating the provided replication controller
 // in the given namespace.
 func (c *Client) RedeployRC(namespace string, rc *v1.ReplicationController) error {
+	// Like with deployments scale the rc down to 0, this removes the pod replica instances.
+	// This might not be needed but due to not enough clarity on whether ReplicationControlller dependants
+	// get cleaned up immediately we'll do this for now.
+	rcScale, err := c.Clientset.ExtensionsV1beta1().
+		Scales(namespace).
+		Get("ReplicationController", rc.GetName())
+	if err != nil {
+		return err
+	}
+	_, err = c.Clientset.ExtensionsV1beta1().
+		Scales(namespace).
+		Update("ReplicationController", rcScale)
+	if err != nil {
+		return err
+	}
 	opts := &v1.DeleteOptions{}
-	err := c.Clientset.CoreV1().
+	err = c.Clientset.CoreV1().
 		ReplicationControllers(namespace).
 		Delete(rc.GetName(), opts)
 	if err != nil {
